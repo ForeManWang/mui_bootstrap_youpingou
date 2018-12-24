@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0"/>
+    <title>乐淘登录</title>
+    <link type="image/x-icon" rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../assets/mui/css/mui.css"/>
+    <link rel="stylesheet" href="../assets/fa/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/user.css"/>
+</head>
+<body>
+<div class="lt_container">
+    <header class="lt_topBar">
+        <a class="btn_left" href="javascript:history.back();"><span class="mui-icon mui-icon-arrowleft"></span></a>
+        <h3>登录</h3>
+    </header>
+    <div class="lt_content">
+        <div class="lt_wrapper">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <form class="mui-input-group">
+                        <div class="mui-input-row">
+                            <label>用户名</label>
+                            <input name="username" type="text" placeholder="请输入用户名">
+                        </div>
+                        <div class="mui-input-row">
+                            <label>密码</label>
+                            <input name="password" type="password" class="mui-input-password"  placeholder="请输入密码" >
+                        </div>
+                        <div class="mui-input-row mui-plus-visible">
+                            <label>Input</label>
+                            <input type="text" class="mui-input-speech mui-input-clear" placeholder="语音输入" data-input-clear="6" data-input-speech="6"><span class="mui-icon mui-icon-clear mui-hidden"></span><span class="mui-icon mui-icon-speech"></span>
+                        </div>
+                        <div class="mui-button-row">
+                            <button type="button" class="mui-btn mui-btn-primary">登录</button>&nbsp;&nbsp;
+                            <button type="reset" class="mui-btn mui-btn-danger">重置</button>
+                        </div>
+                    </form>
+                    <div class="mui-text-right">
+                        <a class="mui-btn mui-btn-link" href="user/register.html">免费注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="lt_tabBar">
+        <ul>
+            <li><a href="../index.html"><span class="fa fa-home"></span><p>首页</p></a></li>
+            <li><a href="../category.html"><span class="fa fa-bars"></span><p>分类</p></a></li>
+            <li><a href="cart.html"><span class="fa fa-shopping-cart"></span><p>购物车</p></a></li>
+            <li class="now"><a href="index.html"><span class="fa fa-user"></span><p>会员中心</p></a></li>
+        </ul>
+    </footer>
+</div>
+<script src="../assets/mui/js/mui.js"></script>
+<script src="../assets/zepto/zepto.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/user/login.js"></script>
+</body>
+</html>

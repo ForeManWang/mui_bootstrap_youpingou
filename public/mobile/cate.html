@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>传智云购-分类</title>
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="res/mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="res/fontAwesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/cate.css"/>
+</head>
+<body>
+<div class="cz_layout">
+    <header class="cz_topBar">
+        <a href="javascript:history.back();" class="icon_back fa fa-arrow-left"></a>
+        <form action="javascript:;"><input type="search" placeholder=""/></form>
+        <a href="search.html" class="icon_search fa fa-search"></a>
+    </header>
+    <div class="loading"></div>
+    <div class="cz_container">
+        <div class="cate_slide"></div>
+        <div class="cate_content">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="cz_tabs">
+        <a class="tab_home fa fa-home" href="index.html"><span>首页</span></a>
+        <a class="tab_cate fa fa-bars now" href="cate.html"><span>分类</span></a>
+        <a class="tab_cart fa fa-shopping-cart" href="cart.html"><span>购物车</span></a>
+        <a class="tab_user fa fa-user" href="user/index.html"><span>会员中心</span></a>
+    </footer>
+</div>
+<script type="text/html" id="cate_slide">
+    <ul>
+    <% for(var i = 0 ; i < model.list.length ; i ++){ %>
+        <% var item = model.list[i]; %>
+        <li class="<%=model.currId==0&&i==0?'now':(model.currId==item.id?'now':'')%>" data-id="<%=item.id%>"><%=item.categoryName%></li>
+    <% } %>
+    </ul>
+</script>
+<script type="text/html" id="cate_content">
+    <ul class="mui-clearfix">
+        <% if(!model.list.length ){ %>
+            <div>没有数据</div>
+        <% }else{ %>
+            <% for(var i = 0 ; i < model.list.length ; i ++){ %>
+            <% var item = model.list[i]; %>
+            <li data-id="<%=item.id%>"><a href="#"><img src="<%=item.brandLogo%>" alt="<%=item.brandName%>"/><p><%=item.brandName%></p></a></li>
+            <% } %>
+        <% } %>
+    </ul>
+</script>
+<script src="res/mui/js/mui.min.js"></script>
+<script src="res/artTemplate/template-native.js"></script>
+<script src="res/zepto/zepto.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/cate.js"></script>
+</body>
+</html>

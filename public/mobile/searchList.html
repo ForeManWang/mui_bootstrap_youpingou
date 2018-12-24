@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>传智云购-搜索中心</title>
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="res/mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="res/fontAwesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/search.css"/>
+</head>
+<body>
+<div class="cz_layout">
+    <header class="cz_topBar">
+        <a href="javascript:history.back();" class="icon_back fa fa-arrow-left"></a>
+        <span class="title">搜索中心</span>
+    </header>
+    <div class="cz_container ">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <div class="cz_search">
+                    <form action="">
+                        <input class="search_input" type="search" placeholder="搜索你喜欢的商品">
+                    </form>
+                    <a class="search_btn" href="javascript:;">搜索</a>
+                </div>
+                <div class="cz_orderBar">
+                    <a data-type="time" href="javascript:;">上架时间 <span class="fa fa-angle-down"></span></a>
+                    <a data-type="price" href="javascript:;">价格 <span class="fa fa-angle-down"></span></a>
+                    <a data-type="num" href="javascript:;">销量 <span class="fa fa-angle-down"></span></a>
+                    <a data-type="sale" href="javascript:;">折扣 <span class="fa fa-angle-down"></span></a>
+                </div>
+                <div id="product_box" class="mui-clearfix">
+                    <div class="loading"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="cz_tabs">
+        <a class="tab_home fa fa-home" href="index.html"><span>首页</span></a>
+        <a class="tab_cate fa fa-bars" href="cate.html"><span>分类</span></a>
+        <a class="tab_cart fa fa-shopping-cart" href="cart.html"><span>购物车</span></a>
+        <a class="tab_user fa fa-user" href="user/index.html"><span>会员中心</span></a>
+    </footer>
+</div>
+<script type="text/html" id="productTpl">
+    <% if(model.data && model.data.length){ %>
+    <% for(var i = 0 ; i < model.data.length ; i ++){ %>
+    <% var item = model.data[i]; %>
+    <a href="product.html?productId=<%=item.id%>" class="cz_product">
+        <div class="box">
+            <img src="<%=item.pic[0]&&item.pic[0].picAddr||'/mobile/images/none.jpg'%>" alt="<%=item.proName%>"/>
+            <p class="name"><%=item.proName%></p>
+            <p><span class="price">&yen;<%=item.price%></span><span class="oldPrice">&yen;<%=item.oldPrice%></span></p>
+            <button class="button">立即购买</button>
+        </div>
+    </a>
+    <% } %>
+    <%}else{%>
+    <div class="mui-text-center">没有更多商品</div>
+    <%}%>
+</script>
+<script src="res/mui/js/mui.min.js"></script>
+<script src="res/zepto/zepto.min.js"></script>
+<script src="res/artTemplate/template-native.js"></script>
+<script src="js/common.js"></script>
+<script src="js/searchList.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+body{
+    background: #fff;
+}
+.cz_history{
+    padding: 10px;
+    color: #666;
+}
+.cz_history .title{
+    font-size: 12px;
+    float: left;
+    line-height: 20px;
+}
+.cz_history .icon_clear{
+    font-size: 12px;
+    float: right;
+    line-height: 20px;
+}
+.cz_history ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+    margin-top: 10px;
+}
+.cz_history ul li{
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    border-bottom:none ;
+    padding:  0 10px;
+}
+.cz_history ul li a{
+    display: inline-block;
+    font-size: 12px;
+    color: #666;
+}
+.cz_history ul li .icon_delete{
+    font-size: 12px;
+    color: #666;
+    float: right;
+    margin-top: 8px;
+}
+
+.cz_product{
+    float: left;
+    width: 50%;
+    padding:0 5px;
+    margin-bottom: 10px;
+}
+.cz_product .box{
+    width: 100%;
+    box-shadow: 0 0 5px #ccc;
+    text-align: center;
+    padding: 10px 0;
+}
+.cz_product .box img{
+    width: 100%;
+}
+.cz_product .box .name{
+    padding: 0 10px;
+    height: 36px;
+    line-height: 18px;
+    overflow: hidden;
+}
+.cz_product .box .price{
+    font-size: 12px;
+    color: #f30;
+    margin-right: 10px;
+}
+.cz_product .box .oldPrice {
+    font-size: 12px;
+    color: #ccc;
+    text-decoration: line-through;
+}
+.cz_product .box .button{
+    background: #006699;
+    color: #fff;
+}
+
+
+.cz_orderBar{
+    height: 30px;
+    line-height: 30px;
+    background: #efeff4;
+    box-shadow: 2px 0 2px #ccc;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.cz_orderBar a{
+    width: 25%;
+    font-size: 12px;
+    color: #333;
+    float: left;
+    text-align: center;
+}
+.cz_orderBar a.now{
+    color: #ff3300;
+}
+.cz_container{
+    height: 100%;
+    width: 100%;
+}
+.mui-scroll-wrapper{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+#product_box{
+    min-height: 300px;
+}

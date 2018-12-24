@@ -1,0 +1,113 @@
+body{
+    font-family: "Microsoft YaHei";
+}
+aside{
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #222d32;
+}
+.lt_info{
+    background: #367fa9;
+    width: 100%;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+}
+.lt_info a{
+    color: #fff;
+    text-decoration: none;
+}
+.lt_user{
+    padding: 30px;
+    color: #ccc;
+    font-size: 12px;
+}
+.lt_user img{
+    width: 40px;
+    height: 40px;
+}
+
+.lt_menu{
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+.lt_menu > li{
+}
+.lt_menu > li.now{
+    background: #1e282c;
+}
+.lt_menu > li > a{
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    border-left: 3px solid transparent;
+    padding-left: 30px;
+}
+.lt_menu > li > a > .glyphicon-menu-left{
+    float: right;
+    margin-right: 10px;
+    margin-top: 14px;
+}
+.lt_menu > li.now > a > .glyphicon-menu-left{
+    transform: rotate(-90deg);
+}
+
+.lt_menu > li.now > a{
+    border-left-color: #3c8dbc;
+}
+.lt_menu > li > .child{
+    background: #2c3b41;
+    display: none;
+}
+.lt_menu > li.now > .child{
+    display: block;
+}
+.lt_menu > li > .child > a{
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    text-decoration: none;
+    color: #aaa;
+    padding-left: 50px;
+}
+.lt_menu > li > .child > a.now{
+    color: #fff;
+}
+
+section{
+    padding-left: 200px;
+}
+section.menu{
+    padding-left: 0;
+}
+section .navbar{
+    background: #3c8dbc;
+}
+section .navbar a{
+    margin-top: 16px;
+    color: #fff;
+}
+
+.lt_table{
+    margin-top: 20px;
+}
+
+.lt_pager .pagination{
+    margin: 0;
+    float: right;
+}
+
+/*æ”÷–*/
+.table th,.table td{
+    text-align: center;
+}

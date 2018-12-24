@@ -1,0 +1,39 @@
+.lt_trade{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    padding: 6px 10px;
+    background: #f5f5f5;
+    border-top: 1px solid #ddd;
+}
+
+.lt_item{
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    word-break: break-all;
+}
+.lt_item .old{
+    color: #666;
+    font-size: 12px;
+}
+.lt_item .now{
+    color: red;
+    font-size: 20px;
+}
+.lt_item .size{
+    padding: 5px;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    line-height: 36px;
+    font-size: 12px;
+}
+.lt_item .size.now{
+    background: #069;
+}
+.lt_item .num{
+    font-size: 12px;
+    color: #666;
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0"/>
+    <title>购物车</title>
+    <link type="image/x-icon" rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../assets/mui/css/mui.css"/>
+    <link rel="stylesheet" href="../assets/fa/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <link rel="stylesheet" href="../css/user.css"/>
+</head>
+<body>
+<div class="lt_container">
+    <header class="lt_topBar">
+        <a class="btn_left" href="javascript:history.back();"><span class="mui-icon mui-icon-arrowleft"></span></a>
+        <h3>购物车</h3>
+    </header>
+    <div class="lt_content lt_content_cart">
+        <div class="lt_wrapper">
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <ul class="mui-table-view">
+                        <!--todo-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lt_cart">
+        <div>订单总金额：&yen;<span>00.00</span></div>
+        <a href="#">生成订单</a>
+    </div>
+    <footer class="lt_tabBar">
+        <ul>
+            <li><a href="../index.html"><span class="fa fa-home"></span><p>首页</p></a></li>
+            <li><a href="../category.html"><span class="fa fa-bars"></span><p>分类</p></a></li>
+            <li><a href="cart.html"><span class="fa fa-shopping-cart"></span><p>购物车</p></a></li>
+            <li class="now"><a href="index.html"><span class="fa fa-user"></span><p>会员中心</p></a></li>
+        </ul>
+    </footer>
+</div>
+<script type="text/template" id="cart">
+    <% if(data && data.length){ %>
+        <% for(var i = 0 ; i < data.length ; i ++){ %>
+            <li class="mui-table-view-cell">
+                <div class="mui-slider-right mui-disabled">
+                    <a data-id="<%=data[i].id%>"
+                       data-size="<%=data[i].size%>"
+                       data-productSize="<%=data[i].productSize%>"
+                       data-num="<%=data[i].num%>"
+                       data-productNum="<%=data[i].productNum%>"
+                       class="mui-btn mui-btn-blue mui-icon mui-icon-compose"></a>
+                    <a data-id="<%=data[i].id%>" class="mui-btn mui-btn-red mui-icon mui-icon-trash"></a>
+                </div>
+                <div class="mui-slider-handle">
+                    <div class="mui-table-cell">
+                        <%
+                            var src = '/m/images/none.png';
+                            if(data[i].pic && data[i].pic.length){
+                                src = data[i].pic[0].picAddr;
+                            }
+                        %>
+                        <div class="lt_proImg"><img src="<%=src%>" onerror="this.src='/m/images/none.png'" /></div>
+                        <div class="lt_proInfo">
+                            <p class="name mui-ellipsis-2"><%=data[i].proName%></p>
+                            <p>
+                                <span class="price">&yen;<%=data[i].price%></span>
+                                <span class="oldPrice">&yen;<%=data[i].oldPrice%></span>
+                                <span class="num"><%=data[i].num%>双</span>
+                            </p>
+                            <p><span class="size">鞋码：<%=data[i].size%></span></p>
+                            <input data-num="<%=data[i].num%>"
+                                   data-price="<%=data[i].price%>"
+                                   type="checkbox"  />
+                        </div>
+                    </div>
+                </div>
+            </li>
+        <% } %>
+    <%}else{%>
+        <li class="mui-table-view-cell">
+            <div class="mui-table-cell">
+                <a class="mui-btn mui-btn-link" href="../search.html">购物车空的去添加。</a>
+            </div>
+        </li>
+    <%}%>
+</script>
+<script type="text/template" id="edit">
+    <div class="lt_cart_edit">
+        <strong>尺码：</strong>
+        <%
+        var arr = (productsize||'40-50').split('-');
+        var start = arr[0],end = arr[1];
+        for( var i = start ; i <= end ; i ++ ){
+        %>
+        <span class="<%=i==size?'now':''%>" ><%=i%></span>
+        <% } %>
+    </div>
+    <div class="lt_cart_edit">
+        <strong>数量：</strong>
+        <div class="mui-numbox" data-numbox-min="1" data-numbox-max="<%=productnum%>">
+            <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+            <input class="mui-input-numbox" type="number" value="<%=num%>">
+            <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+        </div>
+    </div>
+</script>
+<script src="../assets/mui/js/mui.js"></script>
+<script src="../assets/zepto/zepto.min.js"></script>
+<script src="../assets/artTemplate/template-native.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/user/cart.js"></script>
+</body>
+</html>

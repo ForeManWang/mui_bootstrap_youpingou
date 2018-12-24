@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>传智云购-购物车</title>
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="res/mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="res/fontAwesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/cart.css"/>
+</head>
+<body>
+<div class="cz_layout">
+    <header class="cz_topBar">
+        <a href="javascript:history.back();" class="icon_back fa fa-arrow-left"></a>
+        <span class="title">购物车</span>
+        <a href="javascript:;" class="icon_refresh fa fa-refresh"></a>
+    </header>
+    <div class="cz_container">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <ul class="mui-table-view" id="cart_box" >
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="cart_order">订单总额：&yen;<span id="cartAmount">0.00</span> <a href="javascript:;">生成订单</a></div>
+    <footer class="cz_tabs">
+        <a class="tab_home fa fa-home" href="index.html"><span>首页</span></a>
+        <a class="tab_cate fa fa-bars" href="cate.html"><span>分类</span></a>
+        <a class="tab_cart fa fa-shopping-cart now" href="cart.html"><span>购物车</span></a>
+        <a class="tab_user fa fa-user" href="user/index.html"><span>会员中心</span></a>
+    </footer>
+</div>
+<script type="text/html" id="cartTpl">
+    <% if(model && model.length){ %>
+    <% for(var i = 0 ; i < model.length ; i ++){ %>
+    <% var item = model[i]; %>
+    <li data-product="<%=item.id%>" class="mui-table-view-cell">
+        <div class="mui-slider-right mui-disabled">
+            <%if(item.statu == 1 && item.num > 0){%>
+            <a data-id="<%=item.id%>" class="mui-btn mui-btn-blue">编辑</a>
+            <%}%>
+            <a data-id="<%=item.id%>" class="mui-btn mui-btn-red">删除</a>
+        </div>
+        <a href="javascript:;" class="mui-navigate-right mui-slider-handle">
+            <%
+            var pic = item.pic[0] && item.pic[0].picAddr || '/mobile/images/none.jpg';
+            %>
+            <img class="mui-media-object mui-pull-left" src="<%=pic%>">
+            <div class="mui-media-body">
+                <p class="name"><%=item.proName%></p>
+                <p class="info">
+                    <span class="price">&yen;<%=item.price%></span>
+                    <span class="oldPrice">&yen;<%=item.oldPrice||'0.00'%></span>
+                    <span class="number">x<%=item.num%>双</span>
+                </p>
+                <p><span class="size">鞋码：<%=item.size%></span></p>
+            </div>
+            <%if(item.statu == 1 && item.num > 0){%>
+            <input data-id="<%=item.id%>" type="checkbox"/>
+            <%}else{%>
+            <span class="novalidate">无效</span>
+            <%}%>
+        </a>
+    </li>
+    <% } %>
+    <%}else{%>
+    <div class="mui-text-center">购物车空的</div>
+    <%}%>
+</script>
+<script type="text/html" id="cartUpdateTpl">
+    <div class="cart_update">
+        <div class="p_size">
+            尺码：<% var size = model.productSize || '35-45';var arr = size.split('-');var startSize = arr[0],endSize = arr[1]; %>
+            <% for(var i = startSize;i <= endSize;i++){ %> <span class="btn_size <%=i==model.size?'now':''%>"><%=i%></span><% } %>
+        </div>
+        <div class="p_number">
+            数量：<span class="jian">-</span><input readonly type="text" value="<%=model.num||0%>"  data-max="<%=model.productNum%>" /><span class="jia">+</span>
+        </div>
+    </div>
+</script>
+<script src="res/mui/js/mui.min.js"></script>
+<script src="res/zepto/zepto.min.js"></script>
+<script src="res/artTemplate/template-native.js"></script>
+<script src="js/common.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

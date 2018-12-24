@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乐淘 - 后台管理系统首页</title>
+    <!--bootstrap  原生样式-->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <!--字体图标-->
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
+    <!--加载进度条-->
+    <link rel="stylesheet" href="assets/nprogress/nprogress.css">
+    <!--首页样式-->
+    <link rel="stylesheet" href="less/index.css">
+    <!--
+        需要使用到table 插件，table 样式
+    -->
+    <link rel="stylesheet" href="less/bootstrap-table.css">
+    <!--jQuery 插件.-->
+    <script src="assets/jquery/jquery.min.js"></script>
+    <script>
+        /*检测用户是否已经登录*/
+        $.ajax({
+            url:"/employee/checkRootLogin",
+            type:"get",
+            success:function(data){
+                // console.log(data);
+                if(data.error==400){
+                    //说明用户未登录
+                    window.location.href="employee/login.html";
+                }
+            }
+        })
+    </script>
+</head>
+<body>
+<!-- 侧边栏 -->
+<div class="aside">
+
+    <!-- 个人资料 -->
+    <div class="profile">
+        <!-- 头像 -->
+        <div class="avatar img-circle">
+            <img src="images/my_logo.jpg">
+        </div>
+        <h4>张学友</h4>
+    </div>
+    <!-- 导航菜单 -->
+    <div class="navs">
+        <ul class="list-unstyled">
+            <li><a href="index.html"><i class="fa fa-user"></i> 用户管理</a></li>
+            <li>
+                <a href="javascript:;"><i class="fa fa-bars"></i>分类管理 <i class="fa fa-angle-right"></i></a>
+                <ul class="list-unstyled" style="display:block">
+                    <li class="active"><a href="categoryFirst.html">一级分类管理</a></li>
+                    <li><a href="categorySecond.html">二级分类管理</a></li>
+                </ul>
+            </li>
+            <li><a href="productList.html"><i class="fa fa-product-hunt"></i>商品管理</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 主体 -->
+<div class="main">
+    <div class="container-fluid">
+        <div class="header">
+            <nav class="navbar navbar-custom">
+                <div class="navbar-header">
+                    <a href="javascript:;" class="navbar-brand">
+                        <i class="fa fa-navicon"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="javascript:;" class="login_out_bot" data-toggle="modal" data-target=".bs-example-modal-sm">
+                            <i class="fa fa-sign-out"></i> 退出
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!--
+         这个区域指的是
+         右边的部分，这部分我要显示用户信息.
+        -->
+        <div class="body teacher-profile">
+            <div class="profile">
+                <div class="chart">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">添加分类</button>
+                    <br><br>
+                    <div id="main" >
+                        <table id="categoryId"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="closeWindowId" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">添加分类</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="categoryIdFiled" placeholder="请输入分类的名称">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary categorySave">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--bootstrap 核心文件-->
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<!--加载绿色进度条-->
+<script src="assets/nprogress/nprogress.js"></script>
+<!--加载绿色进度条的使用-->
+<script src="js/common.js"></script>
+<!--table 插件的核心文件-->
+<script src="js/bootstrap-table.js"></script>
+<!--国际化文件，中文.-->
+<script src="js/bootstrap-table-zh-CN.js"></script>
+<!--
+     把分类的数据渲染到categoryId 这里
+-->
+<script>
+        $(function(){
+            $("#categoryId").bootstrapTable({
+                // table 定义有多少列
+                url: '/category/queryTopCategoryPaging',
+                striped: true,
+                cache: false,
+                pagination: true,
+                sortable: false,
+                //是否值允许选择单行
+                pageList:[10],
+                sidePagination: "server",
+                //在给/user/queryUser 发送请求之前会调用 这个方法.
+                queryParams:function(params){
+                    //在这个方法里面可以设置一些参数数据给服务器
+                    params.page=params.offset/10+1;
+                    params.pageSize=10;
+                    return params;
+                },
+                height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                cardView: false,                    //是否显示详细视图
+                detailView: false,
+                singleSelect:true,
+                columns: [{
+                    checkbox: true
+                }, {
+                    field: 'id',
+                    title: '分类的编号'
+                }, {
+                    field: 'categoryName',
+                    title: '分类名称'
+                }],
+            });
+
+            $(".categorySave").on("click",function(){
+                   var categoryName=$("#categoryIdFiled").val();
+                    //发送到后台服务器.
+                    $.ajax({
+                        url:"/category/addTopCategory",
+                        type:"post",
+                        data:{
+                            categoryName:categoryName
+                        },
+                        success:function(data){
+                             if(data.success){
+
+                                 //不传递参数就是触发当前元素的点击事件.
+                                  $("#closeWindowId").click();
+                                  //清空用户输入的分类名的框.
+                                  $("#categoryIdFiled").val("");
+
+                                 // 刷新table
+                                 $("#categoryId").bootstrapTable("refresh");
+                             }
+                        }
+                    })
+            });
+        });
+</script>
+
+
+</body>
+</html>

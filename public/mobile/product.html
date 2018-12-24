@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>传智云购-搜索中心</title>
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="res/mui/css/mui.min.css"/>
+    <link rel="stylesheet" href="res/fontAwesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/product.css"/>
+</head>
+<body>
+<div class="cz_layout">
+    <header class="cz_topBar">
+        <a href="javascript:history.back();" class="icon_back fa fa-arrow-left"></a>
+        <span class="title">商品详情</span>
+        <a href="index.html" class="icon_home fa fa-home"></a>
+    </header>
+    <div class="cz_container">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll" id="product_box">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="p_option">
+    <a href="cart.html" class="btn_cart fa fa-shopping-cart"></a>
+    <a href="javascript:;" class="btn_addCart">加入购物车</a>
+    <a href="javascript:;" class="btn_pay">立即购买</a>
+</div>
+<script type="text/html" id="productTpl">
+    <div class="cz_banner mui-slider">
+        <div class="mui-slider-group mui-slider-loop">
+            <% if(!model.pic || model.pic.length == 0) {
+                model.pic = [{'picAddr':'/m/images/none.png'}];
+            } %>
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="javascript:;"><img src="<%=model.pic[model.pic.length-1].picAddr%>"></a>
+            </div>
+            <% for(var i = 0;i < model.pic.length;i++){ %>
+            <div class="mui-slider-item">
+                <a href="javascript:;"><img src="<%=model.pic[i].picAddr%>"></a>
+            </div>
+            <% } %>
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="javascript:;"><img src="<%=model.pic[0].picAddr%>"></a>
+            </div>
+        </div>
+        <div class="mui-slider-indicator">
+            <% for(var i = 0;i < model.pic.length;i++){ %>
+            <div class="mui-indicator <%=i==0?'mui-active':''%>"></div>
+            <% } %>
+        </div>
+    </div>
+    <div class="p_title"><%=model.proName%></div>
+    <div class="p_price">
+        <%if(model.sale){%><span class="fold"><span><%=model.sale%></span>折</span><%}%>
+        价格：<strong class="present">¥<%=model.price%></strong>
+        <del class="original">¥<%=model.oldPrice%></del>
+    </div>
+    <div class="p_size">
+        尺码：
+        <%
+            var size = model.size || '35-45';
+            var arr = size.split('-');
+            var startSize = arr[0],endSize = arr[1];
+        %>
+        <% for(var i = startSize;i <= endSize;i++){ %>
+        <span class="btn_size"><%=i%></span>
+        <% } %>
+    </div>
+    <div class="p_number">
+        数量：
+        <span class="jian">-</span><input readonly type="text" value="0" data-max="<%=model.num%>" /><span class="jia">+</span>
+        剩余：<%=model.num%> 件
+    </div>
+</script>
+<script src="res/mui/js/mui.min.js"></script>
+<script src="res/mui/js/mui.lazyload.js"></script>
+<script src="res/mui/js/mui.lazyload.img.js"></script>
+<script src="res/zepto/zepto.min.js"></script>
+<script src="res/artTemplate/template-native.js"></script>
+<script src="js/common.js"></script>
+<script src="js/product.js"></script>
+</body>
+</html>

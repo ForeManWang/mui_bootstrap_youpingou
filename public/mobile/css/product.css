@@ -1,0 +1,148 @@
+body{
+    background: #fff;
+}
+.cz_container{
+    height: 100%;
+    width: 100%;
+}
+.mui-scroll-wrapper{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.p_title {
+    font-weight: normal;
+    padding: 15px 5px;
+    font-size: 18px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.p_price {
+    padding: 12px 5px;
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 14px;
+}
+
+.p_price .fold {
+    float: right;
+    margin: 10px 10px 0 0;
+}
+
+.p_price .fold span {
+    color: #ff0000;
+}
+
+.p_price .present {
+    font-size: 24px;
+    color: #ea543d;
+}
+
+.p_price .present2 {
+    font-size: 24px;
+    color: #ea543d;
+}
+
+.p_price .integral {
+    font-size: 16px;
+    color: #ea543d;
+}
+
+.p_price .original {
+    margin-left: 10px;
+    color: #afafaf;
+}
+
+.p_number{
+    padding: 10px 5px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+.p_number .jian,.p_number .jia{
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+}
+.p_number input{
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+}
+.p_size{
+    padding: 10px 5px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+.p_size .btn_size{
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
+.p_size .btn_size.now{
+    background: #fa672d;
+}
+.p_detail{
+    padding: 10px 5px;
+    border-bottom: 1px solid #ccc;
+}
+.p_detail img{
+    width: 100%;
+}
+
+.p_option{
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 997;
+    padding-left: 62px;
+    border-top: 1px solid #ccc;
+    background-color: #e6e6e6;
+}
+.p_option .btn_cart{
+    position: absolute;
+    left: 15px;
+    top: 13px;
+    font-size: 20px;
+    color: #333;
+}
+.p_option .btn_addCart,.p_option .btn_pay{
+    width: 48%;
+    height: 39px;
+    line-height: 39px;
+    margin-top: 5px;
+    float: left;
+    border: 0;
+    background-color: #991020;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    outline: none;
+    border-radius: 2px;
+}
+.p_option .btn_pay{
+    float: right;
+    margin-right: 6px;
+    background-color: #fa672d;
+}

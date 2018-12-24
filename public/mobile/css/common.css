@@ -1,0 +1,160 @@
+.cz_layout{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.cz_topBar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    background: #006699;
+    text-align: center;
+    color: #fff;
+}
+.cz_topBar .icon_search{
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    padding: 3px;
+}
+.cz_topBar .icon_back{
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 18px;
+    padding: 3px;
+}
+.cz_topBar .icon_refresh,.cz_topBar .icon_home,.cz_topBar .icon_add{
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 18px;
+    padding: 3px;
+}
+.cz_topBar form{
+    padding: 0 40px;
+    width: 100%;
+}
+.cz_topBar form input{
+    background: #fff;
+    margin-bottom: 0;
+    height: 30px;
+    padding: 0 10px;
+    color: #333;
+    border-radius: 2px;
+}
+
+.cz_container{
+    padding-top: 45px;
+    padding-bottom: 50px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.cz_container .mui-scroll-wrapper{
+    position: relative;
+    height: 100%;
+}
+.cz_container .mui-scroll-wrapper .mui-scroll{
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+}
+
+.cz_tabs{
+    height: 50px;
+    width: 100%;
+    background: #006699;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+}
+.cz_tabs a{
+    width: 25%;
+    float: left;
+    text-align: center;
+    color: #fff;
+    padding: 10px 0;
+}
+.cz_tabs a.now{
+    color: darkorange;
+}
+.cz_tabs a span{
+    display: block;
+    font-size: 12px;
+    padding: 3px 0;
+}
+
+.cz_search{
+    position: relative;
+    margin-top: 10px;
+    padding: 0 10px;
+}
+.cz_search .search_input{
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    padding-left: 10px;
+    text-align: left;
+    border: 1px solid #006699;
+    background: #fff;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+.cz_search .search_btn{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    height: 30px;
+    width: 60px;
+    background: #006699;
+    border-radius: 0 4px 4px 0;
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+    line-height: 30px;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.loading{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+}
+.loading::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    border: 2px #006699 solid;
+    -webkit-animation: rotation 1s ease-in-out infinite;
+    animation: rotation 1s ease-in-out infinite;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+}
+@-webkit-keyframes rotation{
+    0%{-webkit-transform: translate(-50%,-50%) rotate(0deg);}
+    100%{-webkit-transform: translate(-50%,-50%) rotate(360deg);}
+}
+@keyframes rotation{
+    0%{transform: translate(-50%,-50%) rotate(0deg);}
+    100%{transform: translate(-50%,-50%) rotate(360deg);}
+}

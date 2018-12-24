@@ -1,0 +1,697 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", tahoma, arial, simsun, "宋体";
+  background-color: #f4f6f8;
+}
+img {
+  display: block;
+  width: 100%;
+}
+a {
+  display: inline-block;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+.aside {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 180px;
+  height: 100%;
+  background-color: #2f4050;
+}
+.aside .profile {
+  height: 160px;
+  padding-top: 25px;
+  text-align: center;
+  background-color: #243443;
+}
+.aside .profile .avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+.aside .profile h4 {
+  color: #a9b0c2;
+  font-size: 16px;
+}
+.aside .navs {
+  padding: 20px 0;
+}
+.aside .navs li a + ul {
+  display: none;
+  overflow: hidden;
+}
+.aside .navs a {
+  width: 100%;
+  line-height: 1;
+  padding: 10px 20px;
+  margin: 4px 0;
+  color: #a9b0c2;
+}
+.aside .navs a:hover {
+  color: #F6F6F6;
+  background-color: #243443;
+}
+.aside .navs a + ul a {
+  padding-left: 46px;
+}
+.aside .navs .active {
+  color: #F6F6F6;
+  background-color: #243443;
+}
+.aside .navs i {
+  margin-right: 8px;
+}
+.aside .navs .arrow {
+  float: right;
+}
+.main {
+  min-width: 844px;
+  padding: 72px 0 30px 180px;
+}
+.main .header {
+  width: 100%;
+  padding-left: 180px;
+  margin-left: -195px;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+.main .header .navbar-custom {
+  padding-right: 15px;
+  background-color: #FFF;
+  border-bottom: 1px solid #EEE;
+  border-radius: 0;
+}
+.main .header .navbar-brand {
+  height: auto;
+  line-height: 1;
+  padding: 4px 6px;
+  margin: 12px 0 0 15px;
+  color: #FFF;
+  background-color: #5cb85c;
+  border-radius: 2px;
+}
+.main .header .navbar-nav a {
+  position: relative;
+  background-color: transparent;
+}
+.main .header .navbar-nav .fa {
+  font-size: 16px;
+}
+.main .header .navbar-nav .badge {
+  line-height: 1;
+  padding: 2px 4px 3px;
+  background-color: #5cb85c;
+  position: absolute;
+  top: 8px;
+  left: 24px;
+  border-radius: 4px;
+}
+.main .body .breadcrumb {
+  background-color: #FFF;
+  border: 1px solid #EEE;
+}
+.main .body .page-title {
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-bottom: 1px solid #EEE;
+  background-color: #FFF;
+  border-radius: 4px;
+}
+.main .body .table {
+  text-align: center;
+  background-color: #FFF;
+}
+.main .body th {
+  text-align: center;
+  font-weight: normal;
+}
+.main .body td {
+  vertical-align: middle;
+}
+.main .body label {
+  color: #666;
+  font-weight: normal;
+}
+.main .body .pagination {
+  margin-top: 0;
+}
+.main .body .repass {
+  padding: 40px 0 20px;
+  background-color: #FFF;
+}
+.main .user-profile .profile {
+  height: 140px;
+  padding: 30px 30px 0 30px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  background-color: #FFF;
+  border-radius: 4px;
+}
+.main .user-profile .profile img {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.main .user-profile .profile span {
+  line-height: 1;
+  display: block;
+  margin-left: 90px;
+}
+.main .user-profile .profile .name {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.main .user-profile .profile li {
+  text-align: center;
+  padding: 10px 0 0;
+}
+.main .user-profile .profile li span {
+  margin: 0;
+}
+.main .user-profile .profile li a {
+  display: block;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 40px;
+  margin-top: 20px;
+  border-right: 1px solid #DDD;
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+}
+.main .user-profile .courses {
+  margin-bottom: 20px;
+  background-color: #FFF;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.main .user-profile .courses .navs {
+  padding: 0 15px;
+  margin: 0;
+  border-bottom: 1px solid #EEE;
+  overflow: hidden;
+}
+.main .user-profile .courses .navs a {
+  line-height: 1;
+  padding: 20px;
+  font-size: 16px;
+  color: #333;
+}
+.main .user-profile .courses .navs a:hover {
+  color: #15c288;
+}
+.main .user-profile .courses .navs .active {
+  color: #15c288;
+}
+.main .user-profile .courses li {
+  float: left;
+}
+.main .user-profile .course {
+  padding: 20px 0;
+  margin: 0 15px;
+  border-bottom: 1px dashed #EEE;
+  overflow: hidden;
+}
+.main .user-profile .course:hover {
+  background-color: #FCFCFC;
+}
+.main .user-profile .course:last-child {
+  border-bottom: none;
+}
+.main .user-profile .course .pic {
+  width: 160px;
+  height: 80px;
+  overflow: hidden;
+  float: left;
+  position: relative;
+}
+.main .user-profile .course .percent {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  margin: -25px 0 0 -25px;
+  font-weight: 600;
+  color: #DDD;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.main .user-profile .course .info {
+  height: 80px;
+  line-height: 1;
+  padding-left: 180px;
+}
+.main .user-profile .course .info a {
+  color: #444;
+  margin: 10px 0 15px;
+  font-size: 18px;
+}
+.main .user-profile .course .info a:hover {
+  color: #15c288;
+}
+.main .user-profile .course .info span {
+  color: #15c288;
+}
+.main .teacher .teacher-add {
+  padding: 40px 0 20px;
+  background-color: #FFF;
+}
+.main .teacher-profile .settings {
+  padding: 40px 0 20px;
+  background-color: #FFF;
+}
+.main .teacher-profile .settings .preview {
+  width: 120px;
+  height: 120px;
+  padding: 0;
+  margin-left: 15px;
+  overflow: hidden;
+  position: relative;
+}
+.main .teacher-profile .settings .preview:hover .cover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.main .teacher-profile .settings .preview:hover .fa-upload {
+  color: rgba(240, 240, 240, 0.8);
+}
+.main .teacher-profile .settings input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.main .teacher-profile .settings .cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 120px;
+  font-size: 40px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: all 0.3s;
+}
+.main .teacher-profile .settings .fa-upload {
+  color: rgba(240, 240, 240, 0);
+}
+.main .teacher-profile .settings .uploadify {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.main .teacher-profile .settings .ckeditor {
+  min-height: 300px;
+}
+.main .teacher-profile .settings select {
+  width: 32%;
+  margin-right: 2%;
+  float: left;
+}
+.main .teacher-profile .settings select:last-child {
+  margin-right: 0;
+}
+.main .teacher-profile .profile .cell {
+  padding: 15px;
+  color: #FFF;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.main .teacher-profile .profile .cell .fa {
+  font-size: 50px;
+  float: left;
+}
+.main .teacher-profile .profile .cell span,
+.main .teacher-profile .profile .cell h5 {
+  display: block;
+  line-height: 1.8;
+  margin: 0 0 0 70px;
+}
+.main .teacher-profile .profile .cell h5 {
+  font-size: 15px;
+}
+.main .teacher-profile .profile .cell span {
+  font-size: 13px;
+}
+.main .teacher-profile .profile .money {
+  background-color: #FC8675;
+}
+.main .teacher-profile .profile .th {
+  background-color: #5AB6DF;
+}
+.main .teacher-profile .profile .user {
+  background-color: #65CEA7;
+}
+.main .teacher-profile .profile .eye {
+  background-color: #EBC85E;
+}
+.main .teacher-profile .profile .chart {
+  min-height: 400px;
+  padding: 30px 15px;
+  margin-top: 20px;
+  background-color: #FFF;
+  overflow: hidden;
+}
+.main .course-add .steps {
+  min-height: 500px;
+  margin-bottom: 80px;
+  border-radius: 4px;
+}
+.main .course-add .brief {
+  overflow: hidden;
+  background-color: #FFF;
+}
+.main .course-add .brief .thumb {
+  width: 240px;
+  height: 120px;
+  background-image: url(../images/course.png);
+  background-size: contain;
+  float: left;
+  position: relative;
+}
+.main .course-add .brief .info {
+  height: 100px;
+  padding-top: 20px;
+  margin-left: 260px;
+}
+.main .course-add .brief dt {
+  line-height: 1;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #666;
+}
+.main .course-add .brief dd {
+  line-height: 2;
+  font-size: 14px;
+  color: #999;
+}
+.main .course-add .forwards {
+  width: 240px;
+  margin-top: 20px;
+  background-color: #FFF;
+  float: left;
+}
+.main .course-add .forwards li {
+  text-align: center;
+  border-bottom: 1px solid #EEE;
+  font-size: 16px;
+}
+.main .course-add .forwards a {
+  display: block;
+  line-height: 1;
+  padding: 22px 0 22px 30px;
+  color: #444;
+  position: relative;
+}
+.main .course-add .forwards b {
+  display: block;
+  width: 18px;
+  height: 18px;
+  line-height: 14px;
+  margin: -9px 0 0 0;
+  border: 1px solid #DDD;
+  font-size: 12px;
+  font-weight: normal;
+  border-radius: 50%;
+  position: absolute;
+  left: 70px;
+  top: 50%;
+}
+.main .course-add .forwards a:hover,
+.main .course-add .forwards .active {
+  color: #15c288;
+}
+.main .course-add .forwards a:hover b,
+.main .course-add .forwards .active b {
+  border: 1px solid #15c288;
+}
+.main .course-add .forwards .active {
+  background-color: #EEE;
+}
+.main .course-add .forwards .done {
+  color: #15c288;
+}
+.main .course-add .forwards .done b {
+  line-height: 16px;
+  color: #FFF;
+  background-color: #15c288;
+  border: 1px solid #15c288;
+}
+.main .course-add .content {
+  min-height: 400px;
+  margin-left: 260px;
+  margin-top: 20px;
+  background-color: #FFF;
+}
+.main .course-add .title {
+  padding: 10px 0;
+  border-bottom: 1px solid #EEE;
+  overflow: hidden;
+}
+.main .course-add .title h5 {
+  margin-left: 15px;
+  font-size: 16px;
+  float: left;
+}
+.main .course-add .title .btn {
+  margin: 5px 10px 0 0;
+}
+.main .course-add form {
+  padding-top: 20px;
+  color: #666;
+}
+.main .course-add .create {
+  padding: 0 15px;
+  background-color: #FFF;
+  overflow: hidden;
+}
+.main .course-add .create form {
+  margin-top: 30px;
+}
+.main .course-add .create .btn {
+  margin-right: -10px;
+}
+.main .course-add .create .extra {
+  height: 240px;
+  padding-left: 40px;
+  margin-top: 30px;
+  border-left: 1px solid #CCC;
+}
+.main .course-add .create .extra p {
+  line-height: 1.5;
+  color: #999;
+}
+.main .course-add .basic {
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+.main .course-add .basic .ckeditor {
+  min-height: 300px;
+}
+.main .course-add .basic select {
+  display: inline-block;
+  width: 25%;
+}
+.main .course-add .basic .help-block {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.main .course-add .picture {
+  padding: 20px 0 40px;
+  overflow: hidden;
+}
+.main .course-add .picture .preview {
+  width: 400px;
+  min-height: 160px;
+}
+.main .course-add .picture img {
+  max-width: 100%;
+  width: auto;
+}
+.main .course-add .picture .tips {
+  margin: 20px 0;
+  width: 400px;
+  color: #666;
+}
+.main .course-add .lessons {
+  padding: 20px 15px;
+}
+.main .course-add .lessons ul {
+  margin-left: 40px;
+  margin-right: 30px;
+  border-left: 2px solid #CCC;
+}
+.main .course-add .lessons li {
+  padding: 10px;
+  margin-left: 24px;
+  border: 1px solid #CCC;
+  margin-top: 10px;
+  color: #666;
+  position: relative;
+}
+.main .course-add .lessons li:before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  margin-top: -1px;
+  background-color: #CCC;
+  position: absolute;
+  top: 50%;
+  left: -25px;
+}
+.main .course-add .lessons li span {
+  margin-right: 5px;
+}
+.main .course-add .lessons li .duration {
+  color: #999;
+  font-size: 13px;
+}
+.main .course-add .lessons li .action {
+  display: none;
+}
+.main .course-add .lessons li:hover {
+  background-color: #F3F3F3;
+}
+.main .course-add .lessons li:hover .action {
+  display: block;
+}
+.main .course-add .lessons li:first-child {
+  margin-top: 0;
+}
+.main .course-add .lessons .fa-file-video-o {
+  color: #70d445;
+}
+.main .course-list .courses {
+  margin-bottom: 20px;
+  background-color: #FFF;
+  border-radius: 4px;
+}
+.main .course-list .search {
+  padding: 15px;
+  border-bottom: 1px solid #EEE;
+}
+.main .course-list .course {
+  padding: 20px 0;
+  margin: 0 15px;
+  border-bottom: 1px dashed #EEE;
+  overflow: hidden;
+}
+.main .course-list .course:hover {
+  background-color: #FCFCFC;
+}
+.main .course-list .course:last-child {
+  border-bottom: none;
+}
+.main .course-list .course .pic {
+  width: 240px;
+  height: 120px;
+  overflow: hidden;
+  float: left;
+  position: relative;
+}
+.main .course-list .course .info {
+  height: 120px;
+  line-height: 1;
+  padding-left: 260px;
+}
+.main .course-list .course .info a {
+  color: #444;
+  margin: 10px 0 15px;
+  font-size: 18px;
+}
+.main .course-list .course .info a:hover {
+  color: #15c288;
+}
+.main .course-list .course .info li {
+  margin: 8px 0;
+  color: #888;
+}
+.main .course-list .course .info span {
+  margin-right: 10px;
+}
+.main .course-category .category-add {
+  padding: 40px 0 20px;
+  background-color: #FFF;
+  border-radius: 4px;
+}
+.main .advert .advert-add {
+  padding: 40px 0 20px;
+  background-color: #FFF;
+}
+.login {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #2f4050;
+}
+.login .login-wrap {
+  width: 500px;
+  height: 340px;
+  padding-top: 85px;
+  margin: 180px auto;
+  background-color: #FFF;
+  position: relative;
+}
+.login .login-wrap .input-group {
+  margin: 20px 0;
+}
+.login .login-wrap .fa {
+  width: 18px;
+  font-size: 20px;
+}
+.login .login-wrap .avatar {
+  position: absolute;
+  left: 50%;
+  top: -60px;
+  width: 140px;
+  height: 140px;
+  border: 10px solid #FFF;
+  margin-left: -70px;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px #CCC;
+  background-color: pink;
+}
+#lesson label {
+  color: #666;
+  font-weight: normal;
+}
+#lesson .help-block {
+  color: #999;
+  font-size: 12px;
+}
+#lesson input.small {
+  width: 80px;
+}
+#teacherModal .avatar {
+  width: 117px;
+  height: 117px;
+  overflow: hidden;
+}
+#teacherModal td,
+#teacherModal th {
+  color: #666;
+}
+#teacherModal .introduce {
+  min-height: 240px;
+  padding: 15px 10px;
+}

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乐淘 - 后台管理系统首页</title>
+    <!--bootstrap  原生样式-->
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <!--字体图标-->
+    <link rel="stylesheet" href="./assets/font-awesome/css/font-awesome.css">
+    <!--加载进度条-->
+    <link rel="stylesheet" href="./assets/nprogress/nprogress.css">
+    <!--首页样式-->
+    <link rel="stylesheet" href="./less/index.css">
+    <!--
+        需要使用到table 插件，table 样式
+    -->
+    <link rel="stylesheet" href="./less/bootstrap-table.css">
+    <!--jQuery 插件.-->
+    <script src="./assets/jquery/jquery.min.js"></script>
+    <script>
+        /*检测用户是否已经登录*/
+        $.ajax({
+            url: "/employee/checkRootLogin",
+            type: "get",
+            success: function (data) {
+                // console.log(data);
+                if (data.error == 400) {
+                    //说明用户未登录
+                    window.location.href = "login.html";
+                }
+            }
+        })
+    </script>
+</head>
+<body>
+<!-- 侧边栏 -->
+<div class="aside">
+
+    <!-- 个人资料 -->
+    <div class="profile">
+        <!-- 头像 -->
+        <div class="avatar img-circle">
+            <img src="./images/my_logo.jpg">
+        </div>
+        <h4>张学友</h4>
+    </div>
+    <div class="navs">
+        <ul class="list-unstyled">
+            <li class="active"><a href="index.html"><i class="fa fa-user"></i> 用户管理</a></li>
+            <li>
+                <a href="javascript:;"><i class="fa fa-bars"></i>分类管理 <i class="fa fa-angle-right"></i></a>
+                <ul class="list-unstyled">
+                    <li><a href="categoryFirst.html">一级分类管理</a></li>
+                    <li><a href="categorySecond.html">二级分类管理</a></li>
+                </ul>
+            </li>
+            <li><a href="productList.html"><i class="fa fa-product-hunt"></i>商品管理</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 主体 -->
+<div class="main">
+    <div class="container-fluid">
+        <div class="header">
+            <nav class="navbar navbar-custom">
+                <div class="navbar-header">
+                    <a href="javascript:;" class="navbar-brand">
+                        <i class="fa fa-navicon"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="javascript:;" class="login_out_bot" data-toggle="modal" data-target=".bs-example-modal-sm">
+                            <i class="fa fa-sign-out"></i> 退出
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!--
+         这个区域指的是
+         右边的部分，这部分我要显示用户信息.
+        -->
+        <div class="body teacher-profile">
+            <div class="profile">
+                <div class="chart">
+                    <div id="main">
+                        <table id="userId"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--bootstrap 核心文件-->
+<script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+<!--加载绿色进度条-->
+<script src="./assets/nprogress/nprogress.js"></script>
+<!--加载绿色进度条的使用-->
+<script src="./js/common.js"></script>
+<!--table 插件的核心文件-->
+<script src="./js/bootstrap-table.js"></script>
+<!--国际化文件，中文.-->
+<script src="./js/bootstrap-table-zh-CN.js"></script>
+<script>
+    $(function () {
+
+        /*我就要画table 表格，用bootstrap 怎么去画*/
+
+        //我使用bootstrap table 插件去画.
+
+        //这个表格需要渲染到页面上面的一个标签上面.
+        /*
+         *  调用这个方法bootstrapTable
+         *    底层回去请求/user/queryUser 通过ajax 去请求，通过
+         *XMLHttpRequest 对象去请求.
+         *    请求好了数据之后，返回的数据是一个数组，就可以算出来有多少行
+         *    然后创建tr，创建td，然后这些数据渲染到userId 里面
+         * */
+        /*
+         *  现在在这个页面每页显示10条
+         *
+         *  给这个地址发送请求，我要怎么样才能够计算出来总页数
+         *
+         *  后台给我返回了总记录数，bootstrap 就会根据总记录数
+         *  来计算出总页数，  总记录数/10
+         *  后台需要给一个总记录数
+         *  bootstrap table 插件，它才能够分页处理
+         *  服务端，rows：【{}】 当前页显示的记录
+         *  total 总记录数.
+         *  bootstrap 拿到之后根据total 计算出总页数
+         *  bootstrap 拿到之后根据rows 之后，这里面得到的是一个数组
+         *  把数组里面的内容遍历出来.
+         *  然后组装成tr，然后放在当前元素里面userId
+         *
+         * */
+        $("#userId").bootstrapTable({
+            // table 定义有多少列
+            url: '/user/queryUser',
+            striped: true,
+            cache: false,
+            pagination: true,
+            sortable: false,
+            //是否值允许选择单行
+            pageList: [10],
+            sidePagination: "server",
+            //在给/user/queryUser 发送请求之前会调用 这个方法.
+            queryParams: function (params) {
+                //在这个方法里面可以设置一些参数数据给服务器
+                params.page = params.offset / 10 + 1;
+                params.pageSize = 10;
+                return params;
+            },
+            height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+            cardView: false,                    //是否显示详细视图
+            detailView: false,
+            singleSelect: true,
+            columns: [{
+                checkbox: true
+            }, {
+                field: 'username',
+                title: '用户名'
+            }, {
+                field: 'mobile',
+                title: '电话'
+            }, {
+                field: 'isDelete',
+                title: '状态'
+            }, {
+                field: 'operation',
+                title: '操作'
+            }],
+            //每一行的数据在渲染之前，都会调用这个方法.
+            //调用这个方法，会传递这一行的数据，以及这一行的数据对应的 索引值
+            rowStyle: function rowStyle(row, index) {
+                //row 代表每一行.
+                if (row.isDelete == 1) {
+                    row.isDelete = "已启用";
+                    row.operation = '<a type="button" id="' + row.id + '" class="btn btn-danger disablebtn">禁用</a>';
+                }
+                else if (row.isDelete == 0) {
+                    row.isDelete = "已禁用";
+                    row.operation = '<a type="button" id="' + row.id + '" class="btn btn-success enablebtn">启用</a>';
+                }
+                return row;
+            },
+            //数据加载成功之后触发.
+            onLoadSuccess: function () {
+                //获取到这些按钮，添加点击事件.
+                //这些按钮后来进去，可以用事件委托.
+                $(".disablebtn").on("click", function () {
+                    // alert(this.id);
+                    $.ajax({
+                        url: "/user/updateUser",
+                        type: "POST",
+                        data: {
+                            id: this.id,
+                            isDelete: 0
+                        },
+                        success: function (data) {
+
+                            if (data.success) {
+                                alert("禁用成功");
+                                //调用table 的refresh 方法，就会去重新加载数据，渲染数据.
+                                $("#userId").bootstrapTable("refresh")
+                            }
+                        }
+
+                    })
+
+                });
+                //启用的逻辑
+                $(".enablebtn").on("click", function () {
+                    $.ajax({
+                        url: "/user/updateUser",
+                        type: "POST",
+                        data: {
+                            id: this.id,
+                            isDelete: 1
+                        },
+                        success: function (data) {
+
+                            if (data.success) {
+                                alert("启用成功");
+                                //调用table 的refresh 方法，就会去重新加载数据，渲染数据.
+                                $("#userId").bootstrapTable("refresh")
+                            }
+                        }
+                    })
+                });
+            }
+        });
+    })
+</script>
+</body>
+</html>

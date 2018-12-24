@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乐淘 - 后台管理系统首页</title>
+    <!--bootstrap  原生样式-->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <!--字体图标-->
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
+    <!--加载进度条-->
+    <link rel="stylesheet" href="assets/nprogress/nprogress.css">
+    <!--首页样式-->
+    <link rel="stylesheet" href="less/index.css">
+    <!--
+        需要使用到table 插件，table 样式
+    -->
+    <link rel="stylesheet" href="less/bootstrap-table.css">
+    <!--jQuery 插件.-->
+    <script src="assets/jquery/jquery.min.js"></script>
+    <style>
+        .input_style_file_upload {
+            padding: 4px 10px;
+            height: 20px;
+            line-height: 20px;
+            position: relative;
+            cursor: pointer;
+            color: #888;
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            display: inline-block;
+            display: inline;
+            zoom: 1
+        }
+
+        .input_style_file_upload  input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer
+        }
+
+        .input_style_file_upload:hover {
+            color: #444;
+            background: #eee;
+            border-color: #ccc;
+            text-decoration: none
+        }
+    </style>
+    <script>
+        /*检测用户是否已经登录*/
+        $.ajax({
+            url:"/employee/checkRootLogin",
+            type:"get",
+            success:function(data){
+                // console.log(data);
+                if(data.error==400){
+                    //说明用户未登录
+                    window.location.href="login.html";
+                }
+            }
+        })
+    </script>
+</head>
+<body>
+<!-- 侧边栏 -->
+<div class="aside">
+    <!--用户信息-->
+    <div class="profile">
+        <div class="avatar img-circle">
+            <img src="images/my_logo.jpg">
+        </div>
+        <h4>张学友</h4>
+    </div>
+    <!-- 导航菜单 -->
+    <div class="navs">
+        <ul class="list-unstyled">
+            <li><a href="index.html"><i class="fa fa-user"></i> 用户管理</a></li>
+            <li>
+                <a href="javascript:;"><i class="fa fa-bars"></i>分类管理 <i class="fa fa-angle-right"></i></a>
+                <ul class="list-unstyled">
+                    <li><a href="categoryFirst.html">一级分类管理</a></li>
+                    <li><a href="categorySecond.html">二级分类管理</a></li>
+                </ul>
+            </li>
+            <li class="active"><a href="productList.html"><i class="fa fa-product-hunt"></i>商品管理</a></li>
+        </ul>
+    </div>
+</div>
+<!-- 主体 -->
+<div class="main">
+    <div class="container-fluid">
+        <!-- 头部 -->
+        <div class="header">
+            <nav class="navbar navbar-custom">
+                <div class="navbar-header">
+                    <a href="javascript:;" class="navbar-brand">
+                        <i class="fa fa-navicon"></i>
+                    </a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="javascript:;" class="login_out_bot" data-toggle="modal" data-target=".bs-example-modal-sm">
+                            <i class="fa fa-sign-out"></i>
+                            退出
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!--
+         这个区域指的是
+         右边的部分，这部分我要显示用户信息.
+        -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">添加商品</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="formProductId">
+                        <div class="form-group">
+                            <div class="dropdown">
+                                请选择品牌
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuBrandId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    &nbsp; &nbsp; &nbsp; &nbsp;<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" id="brandMenuId" aria-labelledby="dropdownMenu1">
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="proName" name="proName" class="form-control" placeholder="请输入产品名称">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" id="changePid"  >
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="proDesc" name="proDesc"  class="form-control" placeholder="请输入产品描述">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="num" name="num"  class="form-control" placeholder="请输入产品数量">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="size" name="size"  class="form-control" placeholder="请输入产品尺码,如20-39">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="oldPrice" name="oldPrice"  class="form-control" placeholder="请输入商品原价">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="price" name="price" class="form-control" placeholder="请输入商品折扣价">
+                        </div>
+                        <!--这个区域保存的是文件上传的内容.-->
+                        <div class="form-group">
+                            <a  href="javascript:;" class="input_style_file_upload">
+                                请选择需要上传的图片
+                                <input type="file" id="productIdFileUpload"  accept="image/jpeg" name="pic1" data-url="/product/addProductPic" multiple>
+                            </a>
+                            ** 请选择三张图片
+                        </div>
+                        <div id="picId" style="overflow: hidden;">
+
+                        </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn_product_close" data-dismiss="modal" >关闭</button>
+                        <button type="button" class="btn btn-primary productSaveId">保存商品</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="body teacher-profile">
+            <div class="profile">
+                <div class="chart">
+                    <a href="#" class="btn btn-primary" id="changeProductId" data-toggle="modal" data-target="#myModal">添加商品</a>
+                    <div id="main" >
+                        <table id="productId"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--bootstrap 核心文件-->
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<!--加载绿色进度条-->
+<script src="assets/nprogress/nprogress.js"></script>
+<!--加载绿色进度条的使用-->
+<script src="js/common.js"></script>
+<!--table 插件的核心文件-->
+<script src="js/bootstrap-table.js"></script>
+<!--国际化文件，中文.-->
+<script src="js/bootstrap-table-zh-CN.js"></script>
+
+<!--文件上传需要依赖的文件-->
+<script src="assets/jquery-fileupload/jquery.ui.widget.js"></script>
+<script src="assets/jquery-fileupload/jquery.iframe-transport.js"></script>
+<script src="assets/jquery-fileupload/jquery.fileupload.js"></script>
+
+
+<script>
+
+        $(function(){
+
+
+            //默认是false
+            var changeWindow=false;
+
+
+
+            var brandId="";
+            //用来保存文件上传的时候后台返回的图片.
+            var picArray=new Array();
+            $("#productId").bootstrapTable({
+                    url:"/product/queryProductDetailList",
+                    method:"get",
+                    pageList:[10],
+                    cache: false,
+                    //是否使用分页.
+                    pagination: true,
+                    //是否可以排序
+                    //开启服务端分页.
+                    sidePagination: "server",
+                    sortable: false,
+                    //在发送请求之前，会调用这个函数，
+                    //可以在这个函数里面组装自己想要的参数
+                    //发送给服务器.
+                    height: 'auto',                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+                    uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+                    cardView: false,                    //是否显示详细视图
+                    detailView: false,
+                    singleSelect:true,
+                    queryParams:function(params){
+                        console.log(params);
+                        params.page=params.offset/10+1;
+                        params.pageSize=10;
+                        return params;
+                    },
+                    columns: [{
+                        checkbox: true
+                        }, {
+                            field: 'id',
+                            title: '商品编号'
+                        }, {
+                            field: 'proName',
+                            title: '商品名称'
+                        }, {
+                            field: 'proDesc',
+                            title: '商品描述'
+                        }, {
+                            field: 'num',
+                            title: '商品库存'
+                        }, {
+                            field: 'size',
+                            title: '商品尺寸'
+                        }, {
+                            field: 'statu',
+                            title: '是否下架'
+                        }, {
+                            field: 'operation',
+                            title: '操作'
+                        }],
+                        //在每一行数据渲染之前，会调用这个方法。
+                        rowStyle:function(row,index){
+                            console.log(row);
+                            if(row.statu==1){
+                                row.statu="已上架商品";
+                                row.operation="<a href='#' class='btn btn-danger'>下架</a>";
+
+                            }else  if(row.statu==0){
+                                row.statu="<font color='red'>已下架商品</font>";
+                                row.operation="<a href='#' class='btn btn-primary'>上架</a>";
+                            }
+                            return row;
+                        },
+                        onDblClickRow:function(row,index){
+                            changeWindow=true;
+                             //$(".productSaveId").html("更改商品");
+                             //双击某一行的时候触发
+                             //alert("双击");
+                             //调用api 弹窗口。
+                             //窗口里面准备表单
+                             //表单里面要回显数据.
+                             //拿到这一行的数据进行回显
+                             //console.log(row);,
+                             //当前行的数据，在这个位置.
+                             //console.log(row);
+                             //模态框，回显信息.
+                             //点击添加商品之后，弹出一个窗口
+                            //点击弹出窗口的保存商品，调用的是添加商品的接口
+                            //双击某一个行，弹出一个窗口
+                            //点击弹出的这个窗口的保存商品，调用的是修改商品的接口.
+                            //获取到修改的商品的id
+                            var id=row.id;
+                            $("#changePid").val(id);
+                            //填充数据.
+                            $("#proName").val(row.proName);
+                            $("#proDesc").val(row.proDesc);
+                            $("#num").val(row.num);
+                            $("#size").val(row.size);
+                            $("#oldPrice").val(row.oldPrice);
+                            $("#price").val(row.price);
+                            $("#changeProductId").click();
+                            //获取当前元素的品牌的id
+                            brandId=row.brandId;
+                            var bId=row.brandId;
+                            //获取到下拉菜单，下拉菜单里面有品牌
+                            var text=$("#brandMenuId").find("#"+bId).children().text();
+                            //console.log($("#brandMenuId").find("#" + bId).children().text());
+                            $("#dropdownMenuBrandId").html('<span class="caret"></span>');
+                            $("#dropdownMenuBrandId").prepend(text);
+                        },
+                        onClickCell:function(field,value,row,$element){
+                              //alert(value);
+                            //console.log(this);
+                            //$element.html("<input type='text' class='form-control' value='"+value+"'>");
+                        }
+            });
+            $.ajax({
+                 url:"/category/querySecondCategoryPaging",
+                 type:"get",
+                 data:{
+                      page:1,
+                      pageSize:50
+                 },
+                 success:function(data){
+                     var rows=data.rows;
+                     for(var i=0;i<rows.length;i++){
+                          var brandName=rows[i].brandName;
+                          var brandId=rows[i].id;
+                          var li="<li id='"+brandId+"'><a href='#'>"+brandName+"</a></li>";
+                          $("#brandMenuId").append(li);
+                     }
+                 }
+            });
+            //点击一下，选中品牌.我在这里，可以获取到品牌的名称.但是id 获取不到.
+            $("#brandMenuId").on("click","li",function(){
+                      var text=$(this).children().text();
+                      $("#dropdownMenuBrandId").html('<span class="caret"></span>');
+                      //往当前元素的内部的前面追加元素.
+                      $("#dropdownMenuBrandId").prepend(text);
+                      brandId=this.id;
+            });
+
+            $('#productIdFileUpload').fileupload({
+                dataType: 'json',
+                //后台处理了之后会给我一个响应，响应的是 图片的地址
+                done: function (e, data) {
+                    //响应回来的数据被fileupload
+                    //方法包装在data 里面.
+                    var pic=data._response.result;
+                    //pic={"picName":"","picAddr":""}
+                    picArray.push(pic);
+                    //在这个地方可以得到后台的图片的名称，图片的地址.
+                    var img="<img src='"+pic.picAddr+"' style='width:100px;height:100px;float: left;'>"
+                    $("#picId").append(img);
+                }
+            });
+
+
+
+            $(".productSaveId").on("click",function(){
+
+
+
+                 var pid=$("#changePid").val();
+
+                  var params=$("#formProductId").serialize();
+                  params=params+"&brandId="+brandId+"&statu=1";
+                  params=params+"&picName1="+picArray[0].picName+"&picAddr1="+picArray[0].picAddr;
+                  params=params+"&picName2="+picArray[1].picName+"&picAddr2="+picArray[1].picAddr;
+                  params=params+"&picName3="+picArray[2].picName+"&picAddr3="+picArray[2].picAddr;
+                  params=params+"&id="+pid;
+
+
+                  //alert(params);
+
+
+                //在这里进行判断。
+                   //我是要调用添加的，还是要调用修改的.
+                   //需要添加条件.
+
+
+                   if(changeWindow){
+                       //修改
+                       //调用修改的..
+                       //alert("调用修改的接口");
+                       $.ajax({
+                           url:"/product/updateProduct",
+                           type:"post",
+                           data:params,
+                           success:function(data){
+                               console.log(data);
+                               if(data.success){
+                                   $(".btn_product_close").click();
+                                   $("#productId").bootstrapTable("refresh");
+                               }
+                           }
+                       })
+                       changeWindow=false;
+
+                   }else{
+                        //添加
+                       //保存商品.
+                       $.ajax({
+                           url:"/product/addProduct",
+                           type:"post",
+                           data:params,
+                           success:function(data){
+                               //console.log(data);
+                               if(data.success){
+                                   $(".btn_product_close").click();
+                                   $("#productId").bootstrapTable("refresh");
+                               }
+                           }
+                       })
+
+                   }
+
+
+
+
+            });
+
+        })
+</script>
+</body>
+</html>
