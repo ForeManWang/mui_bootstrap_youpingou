@@ -1,44 +1,64 @@
-/*·â×°¹¤¾ßº¯Êı*/
-window.lt = {};
-/*»ñÈ¡µØÖ·À¸²ÎÊı*/
-lt.getUrlParams = function(){
-    /*ÄÃµ½ÒÔgetĞÎÊ½´«µİµÄµØÖ·À¸µÄÊı¾İ ?key=1&name=10*/
-    var search = location.search;
-    /*ĞèÒª°Ñ×Ö·û´®×ª»»³É¶ÔÏó  ±ãÓÚ¿ª·¢Ê¹ÓÃ*/
+window.CT = {};
+CT.getParamsByUrl = function () {
+    /*å·²å¯¹è±¡å­˜å‚¨åœ°å€æ ä¿¡æ¯*/
     var params = {};
-    /*Èç¹ûÓĞ£¿´ú±íÓĞ²ÎÊı*/
-    /*Ã»ÓĞÎÊºÅ¾ÍÃ»ÓĞ²ÎÊı*/
-    if(search.indexOf('?') == 0){
-        search = search.substr(1);
+    var search = location.search;
+    if (search) {
+        search = search.replace('?', '');
+        /*å¦‚æœæœ‰å¤šä¸ªé”®å€¼å¯¹*/
         var arr = search.split('&');
-        for(var i = 0 ; i < arr.length ; i++){
-            /*itemArr name=10  ----> [name,10]*/
-            var itemArr = arr[i].split('=');
+        arr.forEach(function (item, i) {
+            var itemArr = item.split('=');
             params[itemArr[0]] = itemArr[1];
-        }
-    }
+        });
+    };
     return params;
+};
+CT.serialize2object = function (serializeStr) {
+    var obj = {};
+    /*key=value&k=v*/
+    if(serializeStr){
+        var arr = serializeStr.split('&');
+        arr.forEach(function (item,i) {
+            var itemArr = item.split('=');
+            obj[itemArr[0]] = itemArr[1];
+        })
+    }
+    return obj;
 }
-/*µÇÂ¼À¹½Ø  ·²ÊÂĞèÒªµÇÂ¼²Ù×÷ µ÷ÓÃ*/
-lt.ajaxFilter = function(options){
-    $.ajax({
-        type:options.type||'get',
-        url:options.url||location.pathname,
-        data:options.data||{},
-        dataType:options.dataType||'json',
-        beforeSend:function(){
-            options.beforeSend && options.beforeSend();
-        },
-        success:function(data){
-            /* error Èç¹û  400  ´ú±íÎ´µÇÂ¼ È¥µÇÂ¼Ò³  Ğ¯´øurl*/
-            if(data.error == 400){
-                location.href = '/m/user/login.html?returnUrl='+location.href
-            }else{
-                options.success && options.success(data);
-            }
-        },
-        error:function(){
-            options.error && options.error();
+CT.getItemById = function (arr,id) {
+    var obj = null;
+    arr.forEach(function (item,i) {
+        if(item.id == id){
+            obj = item;
         }
     });
+    return obj;
 }
+/*éœ€è¦ç™»å½•çš„ajaxè¯·æ±‚*/
+CT.loginUrl = '/m/user/login.html';
+CT.cartUrl = '/m/user/cart.html';
+CT.userUrl = '/m/user/index.html';
+CT.loginAjax = function (params) {
+    /*params====> {} */
+    $.ajax({
+        type: params.type || 'get',
+        url: params.url || '#',
+        data: params.data || '',
+        dataType: params.dataType || 'json',
+        success:function (data) {
+            /*æœªç™»å½•çš„å¤„ç† {error: 400, message: "æœªç™»å½•ï¼"}
+            æ‰€æœ‰çš„éœ€è¦ç™»å½•çš„æ¥å£ æ²¡æœ‰ç™»å½•è¿”å›è¿™ä¸ªæ•°æ®*/
+            if(data.error == 400){
+                /*è·³åˆ°ç™»å½•é¡µ  æŠŠå½“å‰åœ°å€ä¼ é€’ç»™ç™»å½•é¡µé¢  å½“ç™»å½•æˆåŠŸæŒ‰ç…§è¿™ä¸ªåœ°å€è·³å›æ¥*/
+                location.href = CT.loginUrl + '?returnUrl=' + location.href;
+                return false;
+            }else{
+                params.success && params.success(data);
+            }
+        },
+        error:function () {
+            mui.toast('æœåŠ¡å™¨ç¹å¿™');
+        }
+    });
+};

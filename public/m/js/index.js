@@ -5,7 +5,6 @@ $(function () {
     });
     /*轮播图*/
     mui('.mui-slider').slider({
-        interval:2000,
-
+        interval:2000
     });
 });
