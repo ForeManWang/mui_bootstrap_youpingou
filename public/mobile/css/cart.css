@@ -30,11 +30,13 @@
     margin-right: 10px;
     font-size: 12px;
 }
+
 .mui-table-view .mui-media-object {
+    line-height: 60px;
     max-width: 60px;
-    width: 60px;
     height: 60px;
 }
+
 .cart_order{
     height: 30px;
     line-height: 30px;

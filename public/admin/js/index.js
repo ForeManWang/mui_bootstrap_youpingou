@@ -11,14 +11,14 @@ $(function(){
     var option = {
         /*图标的标题*/
         title: {
-            text: '2017年注册人数'
+            text: '2018年注册人数'
         },
         tooltip: {},
         legend: {
             data:['人数']
         },
         xAxis: {
-            data: ["1月","2月","3月","4月","5月","6月"]
+            data: ["6月","7月","8月","9月","10月","11月"]
         },
         yAxis: {},
         series: [{

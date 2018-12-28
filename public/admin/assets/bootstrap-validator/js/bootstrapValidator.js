@@ -2367,7 +2367,7 @@
          *
          * i) date: Consist of DD, MM, YYYY parts which are separated by the separator option
          * ii) date and time:
-         * The time can consist of h, m, s parts which are separated by :
+         * The time can consist of h, mobile33, s parts which are separated by :
          * ii) date, time and A (indicating AM or PM)
          * @returns {Boolean}
          */

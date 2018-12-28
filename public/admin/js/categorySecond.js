@@ -99,6 +99,8 @@ $(function () {
                     $form.find('img').attr('src','images/none.png');
                 }
             }
+        }).done().fail(function () {
+            alert('网络错误，请重试');
         });
     });
 });
