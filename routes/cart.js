@@ -72,7 +72,6 @@ router.get("/queryCart", function (req, res) {
         }
         res.send(data);
       })
-    
   })
 });
 router.get("/queryCartPaging", checkUserLogin);
@@ -111,7 +110,6 @@ router.get("/queryCartPaging", function (req, res) {
               console.log(picData[l]);
             }
         }
-
         page.count = result.count;
         page.data = data;
         res.send(page);

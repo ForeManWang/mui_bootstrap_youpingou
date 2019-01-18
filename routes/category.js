@@ -96,10 +96,7 @@ router.post("/addSecondCategoryPic", function (req, res) {
         let picName = uuid.v1() + path.extname(file.name);
         fs.rename(file.path, 'public\\upload\\brand\\' + picName, function (err) {
             if (err) return res.send({ "error": 403, "message": "图片保存异常！" });
-
             res.send({ "picAddr": '/upload/brand/' + picName });
-
-
         });
     });
 });
