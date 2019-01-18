@@ -43,13 +43,19 @@ $(function () {
     /*进行表单校验*/
     /*扩展一个校验规则*/
     $.fn.bootstrapValidator.validators.checkNum = {
-        validate:function (validate, $field, options) {
+        validate: function (validate, $field, options) {
             /*获取字段对应的值*/
             var text = $.trim($field.val());
             /*不能为空*/
-            if (!text) return {valid: false, message: '请输入商品库存'};
+            if (!text) return {
+                valid: false,
+                message: '请输入商品库存'
+            };
             /*必须是大于0的整数*/
-            if(!/^[1-9]\d*$/.test(text)) return {valid: false, message: '请输入合法商品库存'};
+            if (!/^[1-9]\d*$/.test(text)) return {
+                valid: false,
+                message: '请输入合法商品库存'
+            };
             return true;
             /*规则：如果 返回true 代ll表校验成功*/
             /*规则：如果 返回false 代表校验失败*/
@@ -57,8 +63,11 @@ $(function () {
         }
     }
     $.fn.bootstrapValidator.validators.checkPic = {
-        validate:function (validate, $field, options) {
-            if(picList.length !=3) return {valid: false, message: '请上传三张图片'};
+        validate: function (validate, $field, options) {
+            if (picList.length != 3) return {
+                valid: false,
+                message: '请上传三张图片'
+            };
             return true;
         }
     }
@@ -88,33 +97,33 @@ $(function () {
             num: {
                 validators: {
                     /*自定义校验规则*/
-                    checkNum:{}
+                    checkNum: {}
                 }
             },
-            price:{
+            price: {
                 validators: {
                     notEmpty: {
                         message: '请输入商品价格'
                     }
                 }
             },
-            oldPrice:{
+            oldPrice: {
                 validators: {
                     notEmpty: {
                         message: '请输入商品原价'
                     }
                 }
             },
-            size:{
+            size: {
                 validators: {
                     notEmpty: {
                         message: '请输入商品尺码'
                     }
                 }
             },
-            pic:{
+            pic: {
                 validators: {
-                    checkPic:{}
+                    checkPic: {}
                 }
             }
         }
@@ -127,16 +136,16 @@ $(function () {
         /*picName2=picAddr2*/
         /*picName3=picAddr3*/
         /*每次上传成功记录一下  通过数组*/
-        $.each(picList,function (i,item) {
-            data += '&picName'+(i+1)+'='+item.picName+'&picAddr'+(i+1)+'='+item.picAddr;
+        $.each(picList, function (i, item) {
+            data += '&picName' + (i + 1) + '=' + item.picName + '&picAddr' + (i + 1) + '=' + item.picAddr;
         });
         $.ajax({
-            type:'post',
-            url:'/product/addProduct',
-            data:data,
-            dataType:'json',
-            success:function (data) {
-                if(data.success){
+            type: 'post',
+            url: '/product/addProduct',
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
                     /*关闭模态框*/
                     $('#editModal').modal('hide');
                     /*渲染第一页*/
@@ -166,15 +175,15 @@ var getProductData = function (params, callback) {
 var picList = [];
 var initUpload = function () {
     $('[name="pic1"]').fileupload({
-        dataType:'json',
-        done:function (e, data) {
-            if(picList.length < 3){
+        dataType: 'json',
+        done: function (e, data) {
+            if (picList.length < 3) {
                 /*追加图片*/
-                $(this).parent().parent().next().append('<img width="100" height="100" src="'+data.result.picAddr+'"/> ');
-                picList.push(data.result);//{picName:'',picAddr:''}
+                $(this).parent().parent().next().append('<img width="100" height="100" src="' + data.result.picAddr + '"/> ');
+                picList.push(data.result); //{picName:'',picAddr:''}
                 /*上传了三张图片 显示合法的提示*/
-                if(picList.length == 3){
-                    $('#form').data('bootstrapValidator').updateStatus('pic','VALID');
+                if (picList.length == 3) {
+                    $('#form').data('bootstrapValidator').updateStatus('pic', 'VALID');
                 }
             }
         }
